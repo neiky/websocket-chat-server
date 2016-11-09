@@ -1,23 +1,42 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
-	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="js/index.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="js/index.js"></script>
 </head>
 <body>
-	<h1>It's a chat server!</h1>
-	<br />
-	<label for="name">Name: </label>
-	<input type="text" id="name" />
-	<button type="button" id="register" class="btn btn-primary" onclick="register()">Register</button>
-	<br />
-	
-	<label for="message">Message: </label>
-	<input type="text" id="message" disabled="disabled" />
-	<button type="button" id="send" class="btn btn-primary disabled" onclick="send()" disabled="disabled">Send</button>
-	
-	<div id="messages"></div>
+	<div class="container">
+		<h1>It's a chat server!</h1>
+		<div class="row form-horizontal" id="register-input">
+			<div class="form-group form-group-sm">
+				<div class="col-md-6">
+				<input type="test"
+					class="form-control" id="name" placeholder="Your nickname" />
+				</div>
+				<div class="col-md-6">
+				<button type="button" id="register" class="col-sm-6 form-control btn btn-primary"
+					onclick="register()">Register</button>
+				</div>
+			</div>
+		</div>
+		<div class="row form-horizontal hidden" id="message-input">
+			<div class="form-group form-group-sm">
+				<div class="col-md-8">
+					<input type="text" class="form-control" id="message" placeholder="Type a message" disabled="disabled" />
+				</div>
+				<div class="col-md-4">
+					<button type="button" id="send" class="form-control btn btn-primary disabled" onclick="send()" disabled="disabled">Send</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="messages"></div>
+	</div>
+
 </body>
 
 </html>

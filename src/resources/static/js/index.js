@@ -11,7 +11,7 @@ ws.onmessage = function(message) {
 	var json = JSON.parse(message.data);
 	if (json.type == "message") {
 		var cssClass = json.from == registeredUser ? "me" : "them";
-		$("#messages").append(
+		$("#messages").prepend(
 				"<div class=\"message " + cssClass + "\"><p class=\"author\">"
 						+ json.from + "</p><p class=\"message\">"
 						+ json.message + "</p></div>");
@@ -37,8 +37,8 @@ $(function() {
 			return false;
 		}
 	});
-	
-	
+
+
 	$('#message').keypress(function(e) {
 		var key = e.which;
 		if (key == 13) // the enter key code
@@ -86,10 +86,12 @@ function register() {
 			"name" : name
 		};
 		sendMessage(registerMessage);
+		$("#message-input").toggleClass("hidden", false);
 		$("#message").prop("disabled", false);
 		$("#send").toggleClass("disabled", false);
 		$("#send").prop("disabled", false);
 		$("#message").focus();
+		$("#register-input").toggleClass("hidden", true);
 	}
 }
 
