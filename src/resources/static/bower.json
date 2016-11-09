@@ -1,0 +1,18 @@
+{
+  "name": "ChatServer",
+  "authors": [
+    "Neiky <michi.neiky@gmail.com>"
+  ],
+  "description": "a websocket based chat server",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

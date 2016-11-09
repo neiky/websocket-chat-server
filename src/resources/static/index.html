@@ -1,0 +1,23 @@
+<html>
+<head>
+	<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="js/index.js"></script>
+</head>
+<body>
+	<h1>It's a chat server!</h1>
+	<br />
+	<label for="name">Name: </label>
+	<input type="text" id="name" />
+	<button type="button" id="register" class="btn btn-primary" onclick="register()">Register</button>
+	<br />
+	
+	<label for="message">Message: </label>
+	<input type="text" id="message" disabled="disabled" />
+	<button type="button" id="send" class="btn btn-primary disabled" onclick="send()" disabled="disabled">Send</button>
+	
+	<div id="messages"></div>
+</body>
+
+</html>

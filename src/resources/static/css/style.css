@@ -1,0 +1,23 @@
+#messages {
+	background: #eeeeee;
+	width: 50em;
+	padding: .1em;
+}
+
+.message {
+	padding: .2em;
+}
+
+.me {
+	background: #fff268;
+	text-align: right;
+}
+
+.author {
+	color: #707070;
+	font-size: .8em;
+}
+
+.them {
+	background: #d6f8ff;
+}
