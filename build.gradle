@@ -28,7 +28,6 @@ repositories {
 }
 
 jar {
-	basename = 'chat-server'
 	version = '0.1.0'
 }
 
