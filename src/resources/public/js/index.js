@@ -1,4 +1,10 @@
-var ws = new WebSocket("ws://" + location.host + "/chat");
+
+var wsProtocol = "ws";
+if (location.protocol === 'https:') {
+    wsProtocol = "wss";
+}
+
+var ws = new WebSocket(wsProtocol + "://" + location.host + "/chat");
 
 var registeredUser;
 
