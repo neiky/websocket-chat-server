@@ -1,4 +1,4 @@
-var ws = new WebSocket("ws://" + location.host + "/chat");
+var ws = new WebSocket("wss://" + location.host + "/chat");
 
 var registeredUser;
 
