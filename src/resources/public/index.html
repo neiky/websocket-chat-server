@@ -13,11 +13,11 @@
 		<h1>It's a chat server!</h1>
 		<div class="row form-horizontal" id="register-input">
 			<div class="form-group form-group-sm">
-				<div class="col-md-6">
+				<div class="col-md-4 col-md-offset-2">
 				<input type="test"
 					class="form-control" id="name" placeholder="Your nickname" />
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-4">
 				<button type="button" id="register" class="col-sm-6 form-control btn btn-primary"
 					onclick="register()">Register</button>
 				</div>
@@ -34,7 +34,13 @@
 			</div>
 		</div>
 
-		<div id="messages"></div>
+		<div class="row">
+		<div class="col-md-4">
+			<h3>Userlist</h3>
+			<ul id="userlist"></ul>
+		</div>
+		<div class="col-md-8" id="messages"></div>
+		</div>
 	</div>
 
 </body>

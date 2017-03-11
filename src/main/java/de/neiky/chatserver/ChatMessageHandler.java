@@ -1,6 +1,9 @@
 package de.neiky.chatserver;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
@@ -65,6 +68,7 @@ public class ChatMessageHandler extends TextWebSocketHandler {
 			User user = new User(name, session);
 			if (UserRegistry.getInstance().addUser(user)) {
 				sendRegisterSuccess(session, name);
+				updateUserList();
 			} else {
 				System.err.println("User cannot be added!");
 				sendRegisterError(session, name);
@@ -75,12 +79,28 @@ public class ChatMessageHandler extends TextWebSocketHandler {
 		}
 	}
 
-	private void unregisterUser(WebSocketSession session, String name) {
+	/**
+	 * Send an updated list of registered users to all other users
+	 */
+	private void updateUserList() {
+		Collection<User> users = UserRegistry.getInstance().getUsers();
+		List<String> userlist = users.stream().map(u -> u.getName()).collect(Collectors.toList());
+		
+		JSONObject obj = new JSONObject();
+		obj.put("type", "userlist");
+		obj.put("userlist", userlist);
+		
+		UserRegistry.getInstance().getUsers().forEach(user -> {
+			sendMessage(user.getSession(), obj.toJSONString());
+		});
+	}
 
+	private void unregisterUser(WebSocketSession session, String name) {
 		User user = UserRegistry.getInstance().getUserBySession(session);
 		if (user != null) {
 			UserRegistry.getInstance().removeUser(user);
 		}
+		updateUserList();
 	}
 
 	private void forwardMessage(String to, String message) {
@@ -94,7 +114,7 @@ public class ChatMessageHandler extends TextWebSocketHandler {
 
 		JSONObject obj = new JSONObject();
 		obj.put("type", "success");
-		obj.put("success", success);
+		obj.put("success", "registerSuccess");
 
 		sendMessage(session, obj.toJSONString());
 	}
@@ -113,7 +133,7 @@ public class ChatMessageHandler extends TextWebSocketHandler {
 
 		JSONObject obj = new JSONObject();
 		obj.put("type", "error");
-		obj.put("error", error);
+		obj.put("error", "registerError");
 
 		sendMessage(session, obj.toJSONString());
 	}

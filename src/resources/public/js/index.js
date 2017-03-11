@@ -1,4 +1,4 @@
-var ws = new WebSocket("wss://" + location.host + "/chat");
+var ws = new WebSocket("ws://" + location.host + "/chat");
 
 var registeredUser;
 
@@ -15,6 +15,30 @@ ws.onmessage = function(message) {
 				"<div class=\"message " + cssClass + "\"><p class=\"author\">"
 						+ json.from + "</p><p class=\"message\">"
 						+ json.message + "</p></div>");
+	}
+	if (json.type == "success") {
+		if (json.success == "registerSuccess") {
+			$("#message-input").toggleClass("hidden", false);
+			$("#message").prop("disabled", false);
+			$("#send").toggleClass("disabled", false);
+			$("#send").prop("disabled", false);
+			$("#message").focus();
+			$("#register-input").toggleClass("hidden", true);
+		}
+	}
+	if (json.type == "error") {
+		if (json.error == "registerError") {
+			
+		}
+	}
+	if (json.type == "userlist") {
+		userlistUl = $('#userlist');
+		userlistUl.empty();
+		for (var i = 0; i < json.userlist.length; i++) {
+	        name = json.userlist[i];
+	        userlistUl.append($("<li/>").text(name));
+	        
+	    }
 	}
 }
 
@@ -86,12 +110,12 @@ function register() {
 			"name" : name
 		};
 		sendMessage(registerMessage);
-		$("#message-input").toggleClass("hidden", false);
-		$("#message").prop("disabled", false);
-		$("#send").toggleClass("disabled", false);
-		$("#send").prop("disabled", false);
-		$("#message").focus();
-		$("#register-input").toggleClass("hidden", true);
+//		$("#message-input").toggleClass("hidden", false);
+//		$("#message").prop("disabled", false);
+//		$("#send").toggleClass("disabled", false);
+//		$("#send").prop("disabled", false);
+//		$("#message").focus();
+//		$("#register-input").toggleClass("hidden", true);
 	}
 }
 
